@@ -50,3 +50,5 @@ def normalize_mesh(vertices):
 
     return normalized_vertices
 
+
+
