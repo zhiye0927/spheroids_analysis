@@ -180,6 +180,7 @@ def robust_pca_alignment(points, enforce_direction=True, verbose=True):
     return aligned_points
 
 
+
 def plot_pca_aligned_points(points):
     """
     绘制对齐后的点云，并在质心处绘制XYZ坐标轴
