@@ -81,7 +81,7 @@ def visualize_normalization(normalized_vertices, decimated_faces):
     print("面片数组验证：")
     print(f"原始面片形状: {decimated_faces.shape} (应为[n_faces, 3])")
     print(f"转换后形状: {pyvista_faces.shape} (应为[n_faces*4,])")
-    print(f"面片索引范围: {decimated_faces.min()}~{decimated_faces.max()} (应 < {len(decimated_vertices)})")
+    print(f"面片索引范围: {decimated_faces.min()}~{decimated_faces.max()} (应 < {len(normalized_vertices)})")
 
     # 归一化网格后可视化
     normalized_mesh = pv.PolyData(normalized_vertices, pyvista_faces)
