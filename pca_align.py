@@ -6,6 +6,7 @@ import pyvista as pv
 import open3d as o3d
 import copy
 
+
 def clean_mesh(filepath):
     """
     基础清理函数
@@ -77,7 +78,7 @@ def visualize_normalization(normalized_vertices, decimated_faces):
     # 点云图带有坐标
     fig = plt.figure(figsize=(8, 8))
     ax = fig.add_subplot(111, projection='3d')
-    ax.scatter(points_normalized[:, 0], points_normalized[:, 1], points_normalized[:, 2],
+    ax.scatter(normalized_vertices[:, 0], normalized_vertices[:, 1], normalized_vertices[:, 2],
                s=1, c='b', alpha=0.6)
     ax.set_title("Normalized Point Cloud")
     ax.set_xlabel("X")
@@ -92,7 +93,7 @@ def visualize_normalization(normalized_vertices, decimated_faces):
     print("面片数组验证：")
     print(f"原始面片形状: {decimated_faces.shape} (应为[n_faces, 3])")
     print(f"转换后形状: {pyvista_faces.shape} (应为[n_faces*4,])")
-    print(f"面片索引范围: {decimated_faces.min()}~{decimated_faces.max()} (应 < {len(v_decim)})")
+    print(f"面片索引范围: {decimated_faces.min()}~{decimated_faces.max()} (应 < {len(normalized_vertices)})")
 
     # 归一化网格后可视化
     normalized_mesh = pv.PolyData(normalized_vertices, pyvista_faces)
@@ -176,7 +177,7 @@ def robust_pca_alignment(points, enforce_direction=True, verbose=True):
         print(f"Y范围: [{aligned_points[:, 1].min():.3f}, {aligned_points[:, 1].max():.3f}]")
         print(f"Z范围: [{aligned_points[:, 2].min():.3f}, {aligned_points[:, 2].max():.3f}]")
 
-    return aligned_points, rotation_matrix
+    return aligned_points
 
 
 def plot_pca_aligned_points(points):
@@ -454,6 +455,8 @@ def visualize_icp_result(source, target, transform):
                                       point_show_normal=True)  # 显示法线方向
 
 
+
+'''
 # main
 # 1. load+clean
 v_clean, f_clean = clean_mesh("E:/python_spharm/flowshape/code/demo_data/QSY_A_1098.stl")
@@ -477,3 +480,5 @@ stone_paths = [
     "E:/python_spharm/flowshape/code/demo_data/QSY_A_2797.stl"
 ]
 aligned_data = align_all_to_template(template_path, stone_paths)
+
+'''
